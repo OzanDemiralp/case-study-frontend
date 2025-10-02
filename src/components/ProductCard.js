@@ -53,7 +53,7 @@ function ProductCard({ product }) {
             padding: '3px 0 12px 0',
           }}
         >
-          ${product.price.toFixed(2)}USD
+          ${product.price.toFixed(2)} USD
         </Typography>
         <Box
           sx={{
@@ -105,7 +105,7 @@ function ProductCard({ product }) {
             padding: '0 0 10px 0',
           }}
         >
-          {selectedColor}
+          {selectedColor.charAt(0).toUpperCase() + selectedColor.slice(1)} Gold
         </Typography>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Box>
@@ -116,7 +116,7 @@ function ProductCard({ product }) {
             ></Rating>
           </Box>
           <Typography sx={{ fontFamily: 'AvenirBook', fontSize: 14 }}>
-            {product.popularityScore * 5}/5
+            {(product.popularityScore * 5).toFixed(1)}/5
           </Typography>
         </Box>
       </CardContent>
