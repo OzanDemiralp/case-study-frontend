@@ -6,14 +6,24 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import ProductCardSlider from './components/ProductCardSlider';
 import { useEffect, useState } from 'react';
+import Filters from './components/Filters';
 
 export default function App() {
   const [products, setProducts] = useState([]);
-  useEffect(() => {
-    fetch('http://localhost:8080/api/products')
+
+  const fetchProducts = (filters = {}) => {
+    let url = 'http://localhost:8080/api/products';
+    const params = new URLSearchParams(filters).toString();
+    if (params) url += `?${params}`;
+
+    fetch(url)
       .then((res) => res.json())
       .then((data) => setProducts(data))
       .catch((err) => console.error(err));
+  };
+
+  useEffect(() => {
+    fetchProducts();
   }, []);
 
   return (
@@ -51,6 +61,7 @@ export default function App() {
         <Box sx={{ mt: 4, width: '90vw', position: 'relative' }}>
           <ProductCardSlider products={products} />
         </Box>
+        <Filters onApply={fetchProducts} />
       </Box>
     </Box>
   );
