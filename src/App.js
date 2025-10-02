@@ -49,17 +49,27 @@ export default function App() {
       >
         <Typography
           sx={{
-            position: 'absolute',
-            top: { xs: 25, sm: 50, md: 125, lg: 140 },
             fontFamily: 'AvenirBook, sans-serif',
-            fontSize: 45,
+            fontSize: { xs: 28, sm: 36, md: 45, lg: 50 },
+            mt: { xs: 6, sm: 8 },
           }}
         >
           Product List
         </Typography>
 
         <Box sx={{ mt: 4, width: '90vw', position: 'relative' }}>
-          <ProductCardSlider products={products} />
+          {products.length > 0 ? (
+            <ProductCardSlider products={products} />
+          ) : (
+            <Typography
+              sx={{
+                fontSize: { xs: 20, sm: 24, md: 28 },
+                textAlign: 'center',
+              }}
+            >
+              No products match your filters.
+            </Typography>
+          )}
         </Box>
         <Filters onApply={fetchProducts} />
       </Box>
