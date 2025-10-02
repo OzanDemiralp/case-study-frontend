@@ -12,7 +12,8 @@ export default function App() {
   const [products, setProducts] = useState([]);
 
   const fetchProducts = (filters = {}) => {
-    let url = 'http://localhost:8080/api/products';
+    let url =
+      'https://case-study-backend-production.up.railway.app/api/products';
     const params = new URLSearchParams(filters).toString();
     if (params) url += `?${params}`;
 
